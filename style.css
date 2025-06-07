@@ -696,6 +696,98 @@ footer {
   transform: translateY(-2px);
 }
 
+/* Custom Category Styles */
+.category-selection {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category-selection select {
+  flex: 1;
+  min-width: 200px;
+}
+
+.create-category-btn {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.create-category-btn:hover {
+  background-color: #219a52;
+}
+
+.custom-category-input {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.custom-category-input input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.custom-category-input input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.add-category-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.add-category-btn:hover {
+  background-color: #2980b9;
+}
+
+.cancel-category-btn {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.cancel-category-btn:hover {
+  background-color: #7f8c8d;
+}
+
+/* Auto-redirect message */
+.success-message .auto-redirect {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .nav-links li {
@@ -799,5 +891,34 @@ footer {
   .contact-info,
   .contact-form {
     padding: 1.5rem;
+  }
+}
+
+/* Responsive adjustments for custom category */
+@media (max-width: 768px) {
+  .category-selection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .category-selection select {
+    min-width: auto;
+  }
+
+  .create-category-btn {
+    width: 100%;
+  }
+
+  .custom-category-input {
+    flex-direction: column;
+  }
+
+  .custom-category-input input {
+    min-width: auto;
+  }
+
+  .add-category-btn,
+  .cancel-category-btn {
+    width: 100%;
   }
 }

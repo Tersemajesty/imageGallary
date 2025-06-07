@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Image - Image Gallery</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -35,20 +35,24 @@
                         <input type="text" id="imageTitle" name="imageTitle" required>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="imageDescription">Description</label>
-                        <textarea id="imageDescription" name="imageDescription" rows="3" required></textarea>
-                    </div>
                     
                     <div class="form-group">
                         <label for="imageCategory">Category</label>
-                        <select id="imageCategory" name="imageCategory" required>
-                            <option value="">Select a category</option>
-                            <option value="nature">Nature</option>
-                            <option value="architecture">Architecture</option>
-                            <option value="travel">Travel</option>
-                            <option value="food">Food</option>
-                        </select>
+                        <div class="category-selection">
+                            <select id="imageCategory" name="imageCategory" required>
+                                <option value="">Select a category</option>
+                                <option value="nature">Nature</option>
+                                <option value="architecture">Architecture</option>
+                                <option value="travel">Travel</option>
+                                <option value="food">Food</option>
+                            </select>
+                            <button type="button" id="createCategoryBtn" class="create-category-btn">Create New Category</button>
+                        </div>
+                        <div id="customCategoryInput" class="custom-category-input" style="display: none;">
+                            <input type="text" id="customCategory" placeholder="Enter new category name" maxlength="20">
+                            <button type="button" id="addCategoryBtn" class="add-category-btn">Add</button>
+                            <button type="button" id="cancelCategoryBtn" class="cancel-category-btn">Cancel</button>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -74,8 +78,9 @@
                     <i class="fas fa-check-circle"></i>
                     <h3>Image Uploaded Successfully!</h3>
                     <p>Your image has been added to the <span id="categoryName"></span> gallery.</p>
+                    <p class="auto-redirect">You will be redirected to the gallery in 3 seconds...</p>
                     <div class="success-actions">
-                        <a href="#" id="viewCategoryBtn" class="btn-primary">View in Gallery</a>
+                        <a href="#" id="viewCategoryBtn" class="btn-primary">View Now</a>
                         <button onclick="uploadAnother()" class="btn-secondary">Upload Another</button>
                     </div>
                 </div>

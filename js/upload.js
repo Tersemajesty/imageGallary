@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault()
 
     const title = document.getElementById("imageTitle").value
-    const description = document.getElementById("imageDescription").value
     const category = document.getElementById("imageCategory").value
     const file = imageFileInput.files[0]
 
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const imageData = {
         id: Date.now(), // Use timestamp as unique ID
         title: title,
-        description: description,
         category: category,
         src: e.target.result, // Base64 encoded image
         date: new Date().toISOString(),
@@ -61,6 +59,89 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(file)
   })
 
+  // Custom category functionality
+  const createCategoryBtn = document.getElementById("createCategoryBtn")
+  const customCategoryInput = document.getElementById("customCategoryInput")
+  const customCategoryField = document.getElementById("customCategory")
+  const addCategoryBtn = document.getElementById("addCategoryBtn")
+  const cancelCategoryBtn = document.getElementById("cancelCategoryBtn")
+  const categorySelect = document.getElementById("imageCategory")
+
+  // Load custom categories on page load
+  loadCustomCategories()
+
+  createCategoryBtn.addEventListener("click", () => {
+    customCategoryInput.style.display = "block"
+    createCategoryBtn.style.display = "none"
+    customCategoryField.focus()
+  })
+
+  cancelCategoryBtn.addEventListener("click", () => {
+    customCategoryInput.style.display = "none"
+    createCategoryBtn.style.display = "inline-block"
+    customCategoryField.value = ""
+  })
+
+  addCategoryBtn.addEventListener("click", () => {
+    const categoryName = customCategoryField.value.trim().toLowerCase()
+
+    if (!categoryName) {
+      alert("Please enter a category name")
+      return
+    }
+
+    if (categoryName.length > 20) {
+      alert("Category name must be 20 characters or less")
+      return
+    }
+
+    // Check if category already exists
+    const existingOptions = Array.from(categorySelect.options).map((option) => option.value)
+    if (existingOptions.includes(categoryName)) {
+      alert("This category already exists")
+      return
+    }
+
+    // Add to custom categories in localStorage
+    const customCategories = JSON.parse(localStorage.getItem("customCategories")) || []
+    customCategories.push(categoryName)
+    localStorage.setItem("customCategories", JSON.stringify(customCategories))
+
+    // Add to select dropdown
+    const option = document.createElement("option")
+    option.value = categoryName
+    option.textContent = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
+    categorySelect.appendChild(option)
+
+    // Select the new category
+    categorySelect.value = categoryName
+
+    // Hide custom input
+    customCategoryInput.style.display = "none"
+    createCategoryBtn.style.display = "inline-block"
+    customCategoryField.value = ""
+
+    alert(`Category "${categoryName}" created successfully!`)
+  })
+
+  // Allow Enter key to add category
+  customCategoryField.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      addCategoryBtn.click()
+    }
+  })
+
+  function loadCustomCategories() {
+    const customCategories = JSON.parse(localStorage.getItem("customCategories")) || []
+
+    customCategories.forEach((category) => {
+      const option = document.createElement("option")
+      option.value = category
+      option.textContent = category.charAt(0).toUpperCase() + category.slice(1)
+      categorySelect.appendChild(option)
+    })
+  }
+
   // Save image data to localStorage
   function saveImageToLocalStorage(imageData) {
     // Get existing images or initialize empty array
@@ -73,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("uploadedImages", JSON.stringify(uploadedImages))
   }
 
-  // Show success message and hide form
+  // Show success message and redirect to gallery
   function showSuccessMessage(category) {
     uploadContainer.style.display = "none"
     uploadSuccess.style.display = "block"
@@ -81,12 +162,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update category name in success message
     document.getElementById("categoryName").textContent = category.charAt(0).toUpperCase() + category.slice(1)
 
-    // Set up view category button
+    // Set up view category button - check if it's a custom category
     const viewCategoryBtn = document.getElementById("viewCategoryBtn")
-    viewCategoryBtn.href = `${category}.html`
+    const defaultCategories = ["nature", "architecture", "travel", "food"]
+
+    if (defaultCategories.includes(category)) {
+      viewCategoryBtn.href = `${category}.html`
+    } else {
+      // For custom categories, go to index.html with category filter
+      viewCategoryBtn.href = `index.html?category=${category}`
+    }
 
     // Scroll to success message
     uploadSuccess.scrollIntoView({ behavior: "smooth" })
+
+    // Auto-redirect after 3 seconds
+    setTimeout(() => {
+      window.location.href = viewCategoryBtn.href
+    }, 3000)
   }
 
   // Function to upload another image (reset form)
