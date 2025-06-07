@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ImageGallery</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">All Images</a></li>
+                <li><a href="nature.html">Nature</a></li>
+                <li><a href="travel.html">Travel</a></li>
+                <li><a href="upload.html">Upload</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gallery-header">
+            <h1>All Images</h1>
+            <p>Browse our complete collection of beautiful images</p>
+        </section>
+
+        <section class="gallery-container">
+            <div class="gallery" id="allGallery">
+                <!-- Sample images -->
+                <div class="gallery-item sample-image" data-category="nature">
+                    <img src="images/nature-1.jpg" alt="Beautiful Forest">
+                    <div class="overlay">
+                        <h3>Beautiful Forest</h3>
+                        <p>Dense woodland with towering trees</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="architecture">
+                    <img src="images/architecture-1.jpg" alt="Modern Building">
+                    <div class="overlay">
+                        <h3>Modern Building</h3>
+                        <p>Contemporary glass and steel design</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="travel">
+                    <img src="images/travel-1.jpg" alt="Beach Sunset">
+                    <div class="overlay">
+                        <h3>Beach Sunset</h3>
+                        <p>Golden hour at tropical paradise</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="food">
+                    <img src="images/food-1.jpg" alt="Delicious Pasta">
+                    <div class="overlay">
+                        <h3>Delicious Pasta</h3>
+                        <p>Italian cuisine at its finest</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="nature">
+                    <img src="images/nature-2.jpg" alt="Mountain View">
+                    <div class="overlay">
+                        <h3>Mountain View</h3>
+                        <p>Majestic peaks reaching the sky</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="architecture">
+                    <img src="images/architecture-2.jpg" alt="Historic Building">
+                    <div class="overlay">
+                        <h3>Historic Building</h3>
+                        <p>Classical architecture with ornate details</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="travel">
+                    <img src="images/travel-2.jpg" alt="City Skyline">
+                    <div class="overlay">
+                        <h3>City Skyline</h3>
+                        <p>Urban landscape at night</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="food">
+                    <img src="images/food-2.jpg" alt="Fresh Salad">
+                    <div class="overlay">
+                        <h3>Fresh Salad</h3>
+                        <p>Healthy and colorful ingredients</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+            <div class="lightbox-caption"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Image Gallery. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/gallery-loader.js"></script>
+</body>
+</html>

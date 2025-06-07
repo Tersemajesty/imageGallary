@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ImageGallery</div>
+            <ul class="nav-links">
+                <li><a href="index.html">All Images</a></li>
+                <li><a href="nature.html">Nature</a></li>
+                <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="upload.html">Upload</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gallery-header">
+            <h1>Travel Gallery</h1>
+            <p>Journey through amazing destinations around the world</p>
+        </section>
+
+        <section class="gallery-container">
+            <div class="gallery" id="travelGallery">
+                <!-- Sample travel images -->
+                <div class="gallery-item sample-image" data-category="travel">
+                    <img src="images/travel-1.jpg" alt="Beach Sunset">
+                    <div class="overlay">
+                        <h3>Beach Sunset</h3>
+                        <p>Golden hour at tropical paradise</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="travel">
+                    <img src="images/travel-2.jpg" alt="City Skyline">
+                    <div class="overlay">
+                        <h3>City Skyline</h3>
+                        <p>Urban landscape at night</p>
+                    </div>
+                </div>
+                <div class="gallery-item sample-image" data-category="travel">
+                    <img src="images/travel-3.jpg" alt="Ancient Ruins">
+                    <div class="overlay">
+                        <h3>Ancient Ruins</h3>
+                        <p>Historical site with rich heritage</p>
+                    </div>
+                </div>
+                <!-- User uploaded travel images will be added here by JavaScript -->
+            </div>
+        </section>
+
+        <div class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+            <div class="lightbox-caption"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Image Gallery. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/gallery-loader.js"></script>
+</body>
+</html>
