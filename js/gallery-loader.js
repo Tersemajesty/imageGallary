@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadUploadedImages(currentPage, categoryParam)
 
   function loadUploadedImages(pageType, categoryFilter = null) {
+    // Get the most recent uploaded images from localStorage
     const uploadedImages = JSON.parse(localStorage.getItem("uploadedImages")) || []
 
     if (uploadedImages.length === 0) {
@@ -44,10 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
       categoryToShow === "all" ? uploadedImages : uploadedImages.filter((img) => img.category === categoryToShow)
 
     if (filteredImages.length === 0) {
+      // Show no uploads message if there are no images for this category
+      const noUploadsMessage = document.getElementById("noUploadsMessage")
+      if (noUploadsMessage) {
+        noUploadsMessage.style.display = "block"
+      }
       return // No images for this category
     }
 
-    // Sort by date (newest first)
+    // Sort by date (newest first) to ensure most recent uploads appear at the top
     filteredImages.sort((a, b) => new Date(b.date) - new Date(a.date))
 
     // Add each uploaded image to the gallery
@@ -66,13 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="user-badge">
           <i class="fas fa-user"></i>
         </div>
+        <button class="delete-button" data-id="${imageData.id}" title="Delete Image">
+          <i class="fas fa-trash"></i>
+        </button>
       `
 
-      // Add to gallery (append after sample images)
-      galleryContainer.appendChild(galleryItem)
+      // Add to gallery (prepend to show newest first)
+      galleryContainer.prepend(galleryItem)
 
       // Add lightbox functionality
-      galleryItem.addEventListener("click", () => {
+      galleryItem.addEventListener("click", (e) => {
+        // Don't open lightbox if clicking delete button
+        if (e.target.closest(".delete-button")) {
+          return
+        }
+
         const lightbox = document.querySelector(".lightbox")
         const lightboxImg = document.getElementById("lightbox-img")
         const lightboxCaption = document.querySelector(".lightbox-caption")
@@ -84,6 +98,45 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.style.overflow = "hidden"
         }
       })
+
+      // Add delete functionality
+      const deleteBtn = galleryItem.querySelector(".delete-button")
+      if (deleteBtn) {
+        deleteBtn.addEventListener("click", (e) => {
+          e.stopPropagation()
+          deleteImage(imageData.id, galleryItem)
+        })
+      }
     })
+  }
+
+  // Function to delete an image
+  function deleteImage(imageId, galleryItem) {
+    if (confirm("Are you sure you want to delete this image?")) {
+      // Remove from localStorage
+      let uploadedImages = JSON.parse(localStorage.getItem("uploadedImages")) || []
+      uploadedImages = uploadedImages.filter((img) => img.id != imageId)
+      localStorage.setItem("uploadedImages", JSON.stringify(uploadedImages))
+
+      // Remove from DOM
+      if (galleryItem) {
+        galleryItem.remove()
+      }
+
+      // Check if gallery is now empty
+      const currentPage = window.location.pathname.split("/").pop().split(".")[0]
+      const galleryId = currentPage === "index" ? "allGallery" : `${currentPage}Gallery`
+      const gallery = document.getElementById(galleryId)
+
+      if (gallery) {
+        const userUploads = gallery.querySelectorAll(".user-uploaded")
+        if (userUploads.length === 0) {
+          const noUploadsMessage = document.getElementById("noUploadsMessage")
+          if (noUploadsMessage) {
+            noUploadsMessage.style.display = "block"
+          }
+        }
+      }
+    }
   }
 })

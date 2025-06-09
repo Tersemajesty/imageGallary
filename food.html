@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Gallery</title>
+    <title>Food Gallery</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,7 +14,8 @@
             <ul class="nav-links">
                 <li><a href="index.html">All Images</a></li>
                 <li><a href="nature.html">Nature</a></li>
-                <li><a href="travel.html" class="active">Travel</a></li>
+                <li><a href="travel.html">Travel</a></li>
+                <li><a href="food.html" class="active">Food</a></li>
                 <li><a href="upload.html">Upload</a></li>
             </ul>
             <div class="hamburger">
@@ -25,35 +26,39 @@
 
     <main>
         <section class="gallery-header">
-            <h1>Travel Gallery</h1>
-            <p>Journey through amazing destinations around the world</p>
+            <h1>Food Gallery</h1>
+            <p>Delicious culinary creations from around the world</p>
         </section>
 
         <section class="gallery-container">
-            <div class="gallery" id="travelGallery">
-                <!-- Sample travel images -->
-                <div class="gallery-item sample-image" data-category="travel">
-                    <img src="images/beachview.jpeg" alt="Beach Sunset">
+            <div class="gallery" id="foodGallery">
+                <!-- Sample food images -->
+                <div class="gallery-item sample-image" data-category="food">
+                    <img src="images/pasta2.jpeg    " alt="Delicious Pasta">
                     <div class="overlay">
-                        <h3>Beach Sunset</h3>
-                        <p>Golden hour at tropical paradise</p>
+                        <h3>Delicious Pasta</h3>
+                        <p>Italian cuisine at its finest</p>
                     </div>
                 </div>
-                <div class="gallery-item sample-image" data-category="travel">
-                    <img src="images/skyline.jpeg" alt="City Skyline">
+                <div class="gallery-item sample-image" data-category="food">
+                    <img src="images/salad4.jpeg" alt="Fresh Salad">
                     <div class="overlay">
-                        <h3>City Skyline</h3>
-                        <p>Urban landscape at night</p>
+                        <h3>Fresh Salad</h3>
+                        <p>Healthy and colorful ingredients</p>
                     </div>
                 </div>
-                <div class="gallery-item sample-image" data-category="travel">
-                    <img src="images/historry.jpeg" alt="Ancient Ruins">
+                <div class="gallery-item sample-image" data-category="food">
+                    <img src="images/dessert1.jpeg" alt="Chocolate Dessert">
                     <div class="overlay">
-                        <h3>Ancient Ruins</h3>
-                        <p>Historical site with rich heritage</p>
+                        <h3>Chocolate Dessert</h3>
+                        <p>Decadent sweet treat</p>
                     </div>
                 </div>
-                <!-- User uploaded travel images will be added here by JavaScript -->
+                <!-- User uploaded food images will be added here by JavaScript -->
+            </div>
+            <div id="noUploadsMessage" class="no-uploads" style="display: none;">
+                <p>You haven't uploaded any food images yet.</p>
+                <a href="upload.html" class="upload-btn">Upload Images</a>
             </div>
         </section>
 
@@ -66,14 +71,16 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Image Gallery.</p>
+            <p>&copy; 2025 Image Gallery. All rights reserved.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
         </div>
     </footer>
+
     <script src="js/script.js"></script>
     <script src="js/gallery-loader.js"></script>
 </body>

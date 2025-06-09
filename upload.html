@@ -1,106 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Image - Image Gallery</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="logo">ImageGallery</div>
-            <ul class="nav-links">
-                <li><a href="index.html">All Images</a></li>
-                <li><a href="nature.html">Nature</a></li>
-                <li><a href="travel.html">Travel</a></li>
-                <li><a href="upload.html" class="active">Upload</a></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+      <nav>
+        <div class="logo">ImageGallery</div>
+        <ul class="nav-links">
+          <li><a href="index.html">All Images</a></li>
+          <li><a href="nature.html">Nature</a></li>
+          <li><a href="travel.html">Travel</a></li>
+          <li><a href="food.html">Food</a></li>
+          <li><a href="upload.html" class="active">Upload</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
     </header>
 
     <main>
-        <section class="upload-section">
-            <h1>Upload Your Image</h1>
-            <p class="section-description">Share your beautiful photos with our community</p>
+      <section class="upload-section">
+        <h1>Upload Your Image</h1>
+        <p class="section-description">
+          Share your beautiful photos with our community
+        </p>
 
-            <div class="upload-container">
-                <form id="uploadForm" class="upload-form">
-                    <div class="form-group">
-                        <label for="imageTitle">Image Title</label>
-                        <input type="text" id="imageTitle" name="imageTitle" required>
-                    </div>
-                    
-                    
-                    <div class="form-group">
-                        <label for="imageCategory">Category</label>
-                        <div class="category-selection">
-                            <select id="imageCategory" name="imageCategory" required>
-                                <option value="">Select a category</option>
-                                <option value="nature">Nature</option>
-                                <option value="architecture">Architecture</option>
-                                <option value="travel">Travel</option>
-                                <option value="food">Food</option>
-                            </select>
-                            <button type="button" id="createCategoryBtn" class="create-category-btn">Create New Category</button>
-                        </div>
-                        <div id="customCategoryInput" class="custom-category-input" style="display: none;">
-                            <input type="text" id="customCategory" placeholder="Enter new category name" maxlength="20">
-                            <button type="button" id="addCategoryBtn" class="add-category-btn">Add</button>
-                            <button type="button" id="cancelCategoryBtn" class="cancel-category-btn">Cancel</button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="imageFile">Select Image</label>
-                        <div class="file-input-container">
-                            <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
-                            <div class="file-input-button">Choose File</div>
-                            <span id="fileName">No file chosen</span>
-                        </div>
-                    </div>
-                    
-                    <div class="image-preview-container">
-                        <h3>Image Preview</h3>
-                        <div id="imagePreview" class="image-preview"></div>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Upload Image</button>
-                </form>
+        <div class="upload-container">
+          <form id="uploadForm" class="upload-form">
+            <div class="form-group">
+              <label for="imageTitle">Image Title</label>
+              <input type="text" id="imageTitle" name="imageTitle" required />
             </div>
 
-            <div class="upload-success" id="uploadSuccess" style="display: none;">
-                <div class="success-message">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Image Uploaded Successfully!</h3>
-                    <p>Your image has been added to the <span id="categoryName"></span> gallery.</p>
-                    <p class="auto-redirect">You will be redirected to the gallery in 3 seconds...</p>
-                    <div class="success-actions">
-                        <a href="#" id="viewCategoryBtn" class="btn-primary">View Now</a>
-                        <button onclick="uploadAnother()" class="btn-secondary">Upload Another</button>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="imageCategory">Category</label>
+              <div class="category-selection">
+                <select id="imageCategory" name="imageCategory" required>
+                  <option value="">Select a category</option>
+                  <option value="nature">Nature</option>
+                  <option value="travel">Travel</option>
+                  <option value="food">Food</option>
+                </select>
+                
+              </div>
+              <div
+                id="customCategoryInput"
+                class="custom-category-input"
+                style="display: none"
+              >
+                <input
+                  type="text"
+                  id="customCategory"
+                  placeholder="Enter new category name"
+                  maxlength="20"
+                />
+                <button
+                  type="button"
+                  id="addCategoryBtn"
+                  class="add-category-btn"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  id="cancelCategoryBtn"
+                  class="cancel-category-btn"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-        </section>
+
+            <div class="form-group">
+              <label for="imageFile">Select Image</label>
+              <div class="file-input-container">
+                <input
+                  type="file"
+                  id="imageFile"
+                  name="imageFile"
+                  accept="image/*"
+                  required
+                />
+                <div class="file-input-button">Choose File</div>
+                <span id="fileName">No file chosen</span>
+              </div>
+            </div>
+
+            <div class="image-preview-container">
+              <h3>Image Preview</h3>
+              <div id="imagePreview" class="image-preview"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">Upload Image</button>
+          </form>
+        </div>
+
+        <div class="upload-success" id="uploadSuccess" style="display: none">
+          <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h3>Image Uploaded Successfully!</h3>
+            <p>
+              Your image has been added to the
+              <span id="categoryName"></span> gallery.
+            </p>
+            <p class="auto-redirect">Taking you to the gallery now...</p>
+            <div class="success-actions">
+              <a href="#" id="viewCategoryBtn" class="btn-primary">View Now</a>
+              <button onclick="uploadAnother()" class="btn-secondary">
+                Upload Another
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer>
+  <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Image Gallery. All rights reserved.</p>
+            <p>&copy; 2025 Image Gallery.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
     <script src="js/upload.js"></script>
-</body>
+  </body>
 </html>

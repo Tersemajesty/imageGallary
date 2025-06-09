@@ -216,6 +216,36 @@ main {
   z-index: 5;
 }
 
+/* Delete Button */
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(231, 76, 60, 0.9);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.gallery-item:hover .delete-button {
+  opacity: 1;
+}
+
+.delete-button:hover {
+  background-color: rgba(192, 57, 43, 1);
+  transform: scale(1.1);
+}
+
 /* Lightbox */
 .lightbox {
   display: none;
@@ -580,6 +610,7 @@ footer {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
 }
 
 .image-actions {
@@ -816,13 +847,14 @@ footer {
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+    /* background: red; */
   }
 
   .nav-links {
     position: fixed;
     top: 70px;
     left: -100%;
-    width: 100%;
+    width: 65%;
     height: calc(100vh - 70px);
     background-color: white;
     flex-direction: column;
@@ -920,5 +952,12 @@ footer {
   .add-category-btn,
   .cancel-category-btn {
     width: 100%;
+  }
+}
+
+/* Always show delete button on mobile */
+@media (max-width: 768px) {
+  .delete-button {
+    opacity: 1;
   }
 }

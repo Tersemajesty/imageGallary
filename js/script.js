@@ -82,4 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   })
+
+  // Add global function to handle image deletion
+  window.deleteImageFromGallery = (imageId, element) => {
+    if (confirm("Are you sure you want to delete this image?")) {
+      // Remove from localStorage
+      let uploadedImages = JSON.parse(localStorage.getItem("uploadedImages")) || []
+      uploadedImages = uploadedImages.filter((img) => img.id != imageId)
+      localStorage.setItem("uploadedImages", JSON.stringify(uploadedImages))
+
+      // Remove from DOM
+      if (element && element.parentNode) {
+        element.parentNode.removeChild(element)
+      }
+    }
+  }
 })

@@ -154,7 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("uploadedImages", JSON.stringify(uploadedImages))
   }
 
-  // Show success message and redirect to gallery
+  // Update the showSuccessMessage function to ensure immediate redirect to the category page
+  // and make sure the image appears right away
+
   function showSuccessMessage(category) {
     uploadContainer.style.display = "none"
     uploadSuccess.style.display = "block"
@@ -176,10 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Scroll to success message
     uploadSuccess.scrollIntoView({ behavior: "smooth" })
 
-    // Auto-redirect after 3 seconds
+    // Immediate redirect to the category page
     setTimeout(() => {
       window.location.href = viewCategoryBtn.href
-    }, 3000)
+    }, 1500) // Reduced to 1.5 seconds for quicker feedback
   }
 
   // Function to upload another image (reset form)
